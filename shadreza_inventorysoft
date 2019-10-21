@@ -203,7 +203,6 @@ struct Consumer
 {
     char name[namesize];
     long long int contact_no;
-    long long int fan_id;
 };
 typedef struct Consumer consumerinfo;
 
@@ -277,33 +276,21 @@ void underline()  // underline or highlighting a header
 consumerinfo consumerinfogather()  // collecting data from the consumer
 {
     int i;
-    int fanfollowerqna;  // is the customer a fan with a fan id
     int namemobileprovide;  // will the consumer provide his name and mobile number
     consumerinfo consumer;
 
     label_wrongfanfollowerqna:
         printf("\n\t\t\t\t\t\t Consumer Side\n\t\t\t\t\t");
         underline();
-        printf("\n\tHello and GREETINGS again\n\tAre you one of our fan followers? \n\t\t\tPress\t\t((1)Yes/(2)No)?\t");
-        scanf("%d",&fanfollowerqna);
-        if(fanfollowerqna==1)
-        {
-            printf("\n\t\tYour FANFOLLOWER ID please:\t");
-            scanf("%I64d",&consumer.fan_id);
-        }
-        else if(fanfollowerqna==2)
-        {
-            printf("\n\tIf you have purchased more than 5000 bdt then you will automatically be in the club with special discounts of 10%\n");
             printf("\n\tWould you like to provide your name and mobile number? \n\t\t\tPress\t\t((1)Yes/(2)No)?\t");
             scanf("%d",&namemobileprovide);
             label_wrongnamemobileinput:
             if(namemobileprovide==1)
             {
                 printf("\n\t\tYour Name please:\t");
-                scanf("%s",consumername);
+                scanf("%s",consumer.name);
                 printf("\n\t\tYour Mobile number please:\t");
                 scanf("%I64d",&consumer.contact_no);
-                consumer.fan_id=0;
             }
             else if(namemobileprovide==2)
             {
@@ -315,20 +302,21 @@ consumerinfo consumerinfogather()  // collecting data from the consumer
                 consumer.name[5]='w';
                 consumer.name[6]='n';
                 consumer.name[7]='\0';
-                consumer.contact_no=-1;
-                consumer.fan_id=-1;
+                consumer.contact_no=0;
+
             }
             else
             {
                 printf("\n\tWrong input");
                 goto label_wrongnamemobileinput;
             }
-        }
-        else
-        {
-            printf("\n\tWrong input");
-            goto label_wrongfanfollowerqna;
-        }
+
+
+        FILE * f;
+        f=fopen("customer.txt","w");
+            fprintf(f,"%s\n%d\n",consumer.name,consumer.contact_no);
+        fclose(f);
+
 
         for(i=0;i<strlen(consumer.name);i++)
         {
@@ -336,7 +324,8 @@ consumerinfo consumerinfogather()  // collecting data from the consumer
         }
         consumername[i]='\0';
         consumercontact=consumer.contact_no;
-        consumerfanfollower=consumer.fan_id;
+
+
 
         return consumer;
 
@@ -487,6 +476,12 @@ void purchase()
 {
     FILE * f;
     FILE * p;
+    char cname[100];
+    int cnum;
+    f=fopen("customer.txt","r");
+        fscanf(f,"%s",cname);
+        fscanf(f,"%d",&cnum);
+    fclose(f);
     int c=how_many_prd_to_sell();
     prd a [c];
     show_prd_to_sell();
@@ -606,7 +601,7 @@ void purchase()
             }
         fclose(f);
 
-        printf("\n\t\tYour Memo\n\t");
+        printf("\n\t\t%s''s Memo\n\t",cname);
         underline();
         f=fopen("sell_record.txt","r");
         i=1;
@@ -624,10 +619,10 @@ void purchase()
             }
         fclose(f);
         price=price*(1+((vat-disc)/100))*1.0;
-        printf("\nTotal Bill: %f\nVAT: %f%%\nDISC: %f%%\nTime: %sThank you. Good Day!",price,vat,disc,show_time());
+        printf("\nTotal Bill: %f\nVAT: %f%%\nDISC: %f%%\nTime: %s\nContact: +%d\nThank you. Good Day!",price,vat,disc,show_time(),cnum);
 
         p=fopen("sale.txt","a");
-            fprintf(p,"\nTotal Bill: %f\nVAT: %f%%\nDISC: %f%%\nTime: %sThank you. Good Day!",price,vat,disc,show_time());
+            fprintf(p,"\nTotal Bill: %f\nVAT: %f%%\nDISC: %f%%\nTime: %s\nContact: +%d\nThank you. Good Day!",price,vat,disc,show_time(),cnum);
         fclose(p);
 
         f=fopen("sell_record.txt","w");
@@ -1584,9 +1579,11 @@ int wanttologout ()
 int main()
 {
 
+        printf("This song was taken from ENRICHO , a youtube content maker\n");
+        PlaySound(TEXT("D:\\programming\\c\\cse106_project\\INVENTORY_soft_by_shadreza\\my.wav"),NULL,SND_ASYNC);
+
     consumerinfo consumer;
 oncemore:
-    PlaySound(TEXT("D:\\programming\\c\\cse106_project\\main software\\my.wav"),NULL,SND_SYNC);
     time_date();
     firstdisplay();
     login_input=log_in();
