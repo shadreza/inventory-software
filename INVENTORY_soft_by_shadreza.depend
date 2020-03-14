@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1571604455 source:d:\programming\c\mist_cse106\inventory_soft_by_shadreza\main.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<time.h>
+	<windows.h>
+	<MMsystem.h>
+
+1571633853 source:d:\programming\c\cse106_project\inventory_soft_by_shadreza\main.c
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<time.h>
+	<windows.h>
+	<MMsystem.h>
+

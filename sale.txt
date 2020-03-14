@@ -1,0 +1,39 @@
+
+2 bat 1 2500.000000 2500.000000
+Total Bill: 2500.000000
+VAT: 0.000000%
+DISC: 0.000000%
+Time: Mon Oct 21 03:04:38 2019
+Thank you. Good Day!
+1 kitkat 1 20.000000 20.000000
+Total Bill: 20.000000
+VAT: 0.000000%
+DISC: 0.000000%
+Time: Mon Oct 21 03:54:07 2019
+
+Contact: +6422476
+Thank you. Good Day!
+1 kitkat 1 20.000000 20.000000
+Total Bill: 20.000000
+VAT: 0.000000%
+DISC: 0.000000%
+Time: Mon Oct 21 03:55:59 2019
+
+Contact: +12
+Thank you. Good Day!
+2 bat 12 2500.000000 30000.000000
+Total Bill: 30000.000000
+VAT: 0.000000%
+DISC: 0.000000%
+Time: Mon Oct 21 03:59:42 2019
+
+Contact: +2
+Thank you. Good Day!
+1 kitkat 2 20.000000 40.000000
+Total Bill: 40.000000
+VAT: 0.000000%
+DISC: 0.000000%
+Time: Mon Oct 21 11:32:48 2019
+
+Contact: +0
+Thank you. Good Day!

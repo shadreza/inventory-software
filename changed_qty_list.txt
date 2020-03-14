@@ -1,0 +1,2 @@
+user: a	userid:1	added quantity of prd_id , kitkat 0 to 20 in Mon Oct 21 03:08:54 2019
+
